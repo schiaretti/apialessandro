@@ -8,6 +8,10 @@ const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 import upload from '../config/multer.js'
 
+router.get('/', (req, res) => {
+    res.status(200).json({ message: 'API está funcionando!' });
+});
+
 // Rota de login
 router.post('/login', async (req, res) => {
     try {
