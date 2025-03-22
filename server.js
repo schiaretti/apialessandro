@@ -14,8 +14,8 @@ app.use(cors());
 app.use('/', publicRoutes);
 
 // Rotas privadas (protegidas pelo middleware de autenticação)
-app.use('/listar-usuarios', auth, privateRoutes);
-app.use('/cadastro-user', auth, privateRoutes);
+app.use('/', auth, privateRoutes);
+
 
 // Endpoint de saúde
 app.get('/health', (req, res) => {

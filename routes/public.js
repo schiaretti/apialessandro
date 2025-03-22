@@ -8,6 +8,7 @@ const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 import upload from '../config/multer.js'
 
+// Rota de login
 router.post('/login', async (req, res) => {
     try {
         const { email, senha } = req.body;
@@ -31,24 +32,18 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Senha inválida!' });
         }
 
-        // Verifica se o JWT_SECRET está definido
-        if (!JWT_SECRET) {
-            console.error('JWT_SECRET não está definido!');
-            return res.status(500).json({ message: 'Erro no servidor. Tente novamente!' });
-        }
-
         // Gera o token JWT
         const token = jwt.sign(
             {
                 id: user.id,
                 email: user.email,
-                nivel: user.nivel,
+                nivel: user.nivel, // Certifique-se de que o campo "nivel" está sendo incluído
             },
             JWT_SECRET,
-            { expiresIn: '1d' }
+            { expiresIn: '1d' } // Token expira em 1 dia
         );
 
-        // Retorna o token e informações do usuário
+        // Retorna o token e informações do usuário (opcional)
         res.status(200).json({
             message: 'Login realizado com sucesso!',
             token,
