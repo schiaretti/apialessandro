@@ -25,11 +25,7 @@ const auth = (req, res, next) => {
         const decoded = jwt.verify(tokenWithoutBearer, JWT_SECRET);
         console.log('Token decodificado:', decoded); // Log para depuração
 
-        // Verifica se o usuário é um administrador
-        if (decoded.nivel !== 'admin') {
-            console.error('Acesso negado. Nível do usuário:', decoded.nivel); // Log para depuração
-            return res.status(403).json({ message: 'Acesso restrito a administradores!' });
-        }
+      
 
         // Adiciona o usuário decodificado ao objeto de requisição para uso posterior
         req.user = decoded;
