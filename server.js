@@ -10,6 +10,11 @@ const port = process.env.PORT || 3000; // Usa a porta da Vercel ou 3000 localmen
 app.use(express.json());
 app.use(cors());
 
+// Rota GET para o caminho raiz
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'API está funcionando!' });
+});
+
 // Rotas públicas
 app.use('/api', publicRoutes);
 
