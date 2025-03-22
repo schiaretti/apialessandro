@@ -11,11 +11,10 @@ app.use(express.json());
 app.use(cors());
 
 // Rotas públicas
-app.use('/', publicRoutes);
+app.use('/api', publicRoutes);
 
 // Rotas privadas (protegidas pelo middleware de autenticação)
-app.use('/cadastro_user', auth, privateRoutes);
-app.use('/listar-usuarios', auth, privateRoutes);
+app.use('/api/private', auth, privateRoutes);
 
 
 // Endpoint de saúde
