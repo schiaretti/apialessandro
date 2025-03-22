@@ -31,7 +31,7 @@ model Cidade {
 
 model Cadastro {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  coords              String
+  coords               Json     // Alterado para Json para armazenar arrays
   cidade              String
   endereco            String
   numero              String
